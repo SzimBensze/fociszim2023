@@ -1,10 +1,10 @@
 import random
 import time
-from difflib import SequenceMatcher
+import re
 
 
 STAT_JELEN = False
-print("Szim Foci Szimulátor 2023 (v1.6)")
+print("Szim Foci Szimulátor 2023 (v1.7)")
 
 
 def csapat_input(csapat):
@@ -65,7 +65,7 @@ def csapat_esely(hazcs, vencs, szmertek=6):
 
 
 def felallas(csapat):
-    felallasok3 = {
+    felallasok = {
         "2-3-5": [4, 2, 7],
         "3-4-3": [11, 6, -4],
         "3-5-2": [8, 4, 1],
@@ -76,8 +76,7 @@ def felallas(csapat):
         "4-6-0": [5, 12, -4],
         "5-3-2": [-2, 4, 11],
         "5-4-1": [-5, 6, 12],
-        "X-X-X": [4, 5, 4]}
-    felallasok4 = {
+        "X-X-X": [4, 5, 4],
         "3-3-3-1": [3, 13, -3],
         "3-4-1-2": [12, 3, -2],
         "3-4-2-1": [13, 5, -5],
@@ -88,53 +87,33 @@ def felallas(csapat):
         "4-4-1-1": [2, 6, 5],
         "5-2-1-2": [-4, 4, 13],
         "5-2-2-1": [6, -1, 8],
-        "X-X-X-X": [3, 4, 6]}
-    felallasok5 = {
+        "X-X-X-X": [3, 4, 6],
         "X-X-X-X-X": [4, 7, 2]}
     
     print("Felállás input például: \n5-3-2 vagy 4-3-2-1 vagy 4-2-2-1-1 szigorúan ebben a formátumban!")
     felnev = f"{csapat['nev']} felállása: "
     felinput = input(felnev)
     
-    if len(felinput) == 5:
-        if felinput in felallasok3:
-            csapat["atk"] += felallasok3[felinput][0]
-            csapat["mid"] += felallasok3[felinput][1]
-            csapat["def"] += felallasok3[felinput][2]
-            print(f"Választott felállás: {felinput}")
-        elif SequenceMatcher(None, felinput, "X-X-X").ratio() >= 0.4:
-            csapat["atk"] += felallasok3["X-X-X"][0]
-            csapat["mid"] += felallasok3["X-X-X"][1]
-            csapat["def"] += felallasok3["X-X-X"][2]
-            print("Választott felállás: X-X-X")
-        else:
-            print("Helytelen felállás!")
-    elif len(felinput) == 7:
-        if felinput in felallasok4:
-            csapat["atk"] += felallasok4[felinput][0]
-            csapat["mid"] += felallasok4[felinput][1]
-            csapat["def"] += felallasok4[felinput][2]
-            print(f"Választott felállás: {felinput}")
-        elif SequenceMatcher(None, felinput, "X-X-X-X").ratio() >= 0.42:
-            csapat["atk"] += felallasok4["X-X-X-X"][0]
-            csapat["mid"] += felallasok4["X-X-X-X"][1]
-            csapat["def"] += felallasok4["X-X-X-X"][2]
-            print("Választott felállás: X-X-X-X")
-        else:
-            print("Helytelen felállás!")
-    elif len(felinput) == 9:
-        if felinput in felallasok5:
-            csapat["atk"] += felallasok5[felinput][0]
-            csapat["mid"] += felallasok5[felinput][1]
-            csapat["def"] += felallasok5[felinput][2]
-            print(f"Választott felállás: {felinput}")
-        elif SequenceMatcher(None, felinput, "X-X-X-X-X").ratio() >= 0.44:
-            csapat["atk"] += felallasok5["X-X-X-X-X"][0]
-            csapat["mid"] += felallasok5["X-X-X-X-X"][1]
-            csapat["def"] += felallasok5["X-X-X-X-X"][2]
-            print("Választott felállás: X-X-X-X-X")
-        else:
-            print("Helytelen felállás!")
+    if felinput in felallasok:
+        csapat["atk"] += felallasok[felinput][0]
+        csapat["mid"] += felallasok[felinput][1]
+        csapat["def"] += felallasok[felinput][2]
+        print(f"Választott felállás: {felinput}")    
+    elif re.search("^[0-9]-[0-9]-[0-9]$", felinput):
+        csapat["atk"] += felallasok["X-X-X"][0]
+        csapat["mid"] += felallasok["X-X-X"][1]
+        csapat["def"] += felallasok["X-X-X"][2]
+        print("Választott felállás: X-X-X")
+    elif re.search("^[0-9]-[0-9]-[0-9]-[0-9]$", felinput):
+        csapat["atk"] += felallasok["X-X-X-X"][0]
+        csapat["mid"] += felallasok["X-X-X-X"][1]
+        csapat["def"] += felallasok["X-X-X-X"][2]
+        print("Választott felállás: X-X-X-X")
+    elif re.search("^[0-9]-[0-9]-[0-9]-[0-9]-[0-9]$", felinput):
+        csapat["atk"] += felallasok["X-X-X-X-X"][0]
+        csapat["mid"] += felallasok["X-X-X-X-X"][1]
+        csapat["def"] += felallasok["X-X-X-X-X"][2]
+        print("Választott felállás: X-X-X-X-X")
     else:
         print("Helytelen formátum!")
     pass
