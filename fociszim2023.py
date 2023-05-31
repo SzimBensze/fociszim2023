@@ -4,7 +4,7 @@ import re
 
 
 STAT_JELEN = False
-print("Szim Foci Szimulátor 2023 (v1.7)")
+print("Szim Foci Szimulátor 2023 (v1.8)")
 
 
 def csapat_input(csapat):
@@ -15,15 +15,11 @@ def csapat_input(csapat):
         print("Vendég csapat")
         print("-----")
     csapat["nev"] = input("Csapat neve: ")
-    try:
-        csapat["atk"] = ell100(int(input("Támadás pontok (1-99 között): ")))
-        csapat["mid"] = ell100(int(input("Középpálya pontok (1-99 között): ")))
-        csapat["def"] = ell100(int(input("Védelem pontok (1-99 között): ")))
-        print("-----")
-        return csapat
-    except ValueError:
-        print("Hibás input!")
-        return {}
+    csapat["atk"] = pont_input(csapat["nev"], "atk")
+    csapat["mid"] = pont_input(csapat["nev"], "mid")
+    csapat["def"] = pont_input(csapat["nev"], "def")
+    print("-----")
+    return csapat
 
 
 def csapat_print(csapat):
@@ -36,13 +32,18 @@ def csapat_print(csapat):
         print("Hibás input!")
 
 
-def ell100(input_szam):
-    if input_szam > 99:
-        return 99
-    elif input_szam < 1:
-        return 1
-    else:
-        return input_szam
+def pont_input(nev, tipus):
+    tipusok = {"atk": "Támadás", "mid": "Középpálya", "def": "Védelem"}
+    input_szov = f"{nev} {tipusok[tipus]} pontok (1-99 között): "
+    while True:
+        try:
+            input_szam = int(input(input_szov))
+            if 1 <= input_szam <= 100:
+                return input_szam
+            else:
+                print("Csak 1 és 99 közötti érték elfogadott!")
+        except ValueError:
+            print("Hibás input!")
 
 
 def esely_print(rand, csapat):
@@ -502,7 +503,6 @@ def main():
             bunt = buntetok(hazai, vendeg, 0.75)
             if bunt == None:
                 print("Nincs győztes!")
-                print(ValueError("Hibás adat?"))
                 time.sleep(1)
                 raise ValueError("Hibás adat?")
     
