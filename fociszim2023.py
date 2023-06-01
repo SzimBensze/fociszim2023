@@ -4,7 +4,7 @@ import re
 
 
 STAT_JELEN = False
-print("Szim Foci Szimulátor 2023 (v1.8)")
+print("Szim Foci Szimulátor 2023 (v1.9)")
 
 
 def csapat_input(csapat):
@@ -53,12 +53,11 @@ def esely_print(rand, csapat):
         print(f"R: {rand} V: {csapat['percesely']}")
 
 
-def csapat_esely(hazcs, vencs, szmertek=6):
-    esely = 500
+def csapat_esely(hazcs, vencs, esely=500, szmertek=6):
     hazszer = szmertek / 7 + random.randrange(1, 4) / 7
     venszer = szmertek / 7 + random.randrange(1, 4) / 7
-    hazesely = esely + (hazcs["atk"]*hazszer - vencs["atk"] + hazcs["mid"] - vencs["mid"] + hazcs["def"] - vencs["atk"]*venszer)
-    venesely = esely + (vencs["atk"]*venszer - hazcs["atk"] + vencs["mid"] - hazcs["mid"] + vencs["def"] - hazcs["atk"]*hazszer)
+    hazesely = esely + (hazcs["atk"] * hazszer - vencs["atk"] + hazcs["mid"] - vencs["mid"] + hazcs["def"] - vencs["atk"] * venszer)
+    venesely = esely + (vencs["atk"] * venszer - hazcs["atk"] + vencs["mid"] - hazcs["mid"] + vencs["def"] - hazcs["atk"] * hazszer)
     hazcs["loves"], vencs["loves"], hazcs["gol"], vencs["gol"] = 0, 0, 0, 0
     hazcs["esely"] = hazesely
     vencs["esely"] = venesely
@@ -190,31 +189,11 @@ def loves(hazcs, vencs, plusz):
 
 
 def esemeny_sorsolas(idokezd, idoveg):
-    esemeny_szam = [0,0,0,0,0,0,0,1,1,1,1,1,1,1,2,2,2,2,2,3]
-    esemenyek = [
-        "tizenegyes",
-        "tizenegyes",
-        "tizenegyes",
-        "tizenegyes",
-        "tizenegyes",
-        "tizenegyes",
-        "sarga",
-        "sarga",
-        "sarga",
-        "sarga",
-        "piros",
-        "piros",
-        "vargol",
-        "vargol",
-        "nincsgol",
-        "nincsgol",
-        "serules",
-        "baleset",
-        "szurkolo",
-        "semmi"]
+    esemeny_szam = random.choices([0, 1, 2, 3], [35, 35, 20, 10])[0]
+    esemenyek = random.choices(["tizenegyes", "sarga", "piros", "vargol", "nincsgol", "serules", "baleset", "szurkolo", "semmi"], [30, 20, 10, 10, 10, 5, 5, 5, 5], k=esemeny_szam)
     esemeny_lista = {}
-    for _ in range(random.choice(esemeny_szam)):
-        esemeny_lista[random.randrange(idokezd, idoveg)] = random.choice(esemenyek)
+    for esemeny in esemenyek:
+        esemeny_lista[random.randrange(idokezd, idoveg)] = esemeny
     #print(esemeny_lista)
     return esemeny_lista
 
@@ -311,8 +290,8 @@ def esemeny_valasztas(esemeny, csapat):
 
 
 def meccs90(hazcs, vencs, idokoz):
-    elsplusz = random.choice([0,0,1,1,1,1,2,2,2,2,2,2,3,3,3,3,4,4,4,5])
-    masplusz = random.choice([0,1,1,1,2,2,2,2,3,3,3,3,3,4,4,4,4,5,5,6])
+    elsplusz = random.choices([0, 1, 2, 3, 4, 5], [10, 20, 30, 20, 15, 5])[0]
+    masplusz = random.choices([0, 1, 2, 3, 4, 5, 6], [5, 15, 20, 25, 20, 10, 5])[0]
     esemenyek90 = esemeny_sorsolas(5, 90)
     if len(esemenyek90) >= 2:
         masplusz += 3
@@ -363,8 +342,8 @@ def meccs120(hazcs, vencs, idokoz):
             return {}
     print("-----")
 
-    hossz_elsplusz = random.choice([0,0,0,1,1,1,1,2,2,3])
-    hossz_masplusz = random.choice([0,0,0,1,1,1,2,2,3,4])
+    hossz_elsplusz = random.choices([0, 1, 2, 3], [30, 40, 20, 10])[0]
+    hossz_masplusz = random.choices([0, 1, 2, 3, 4], [25, 35, 20, 10, 10])[0]
     esemenyek120 = esemeny_sorsolas(95, 120)
     
     for i in range(91, 121):
