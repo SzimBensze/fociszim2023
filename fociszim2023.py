@@ -4,7 +4,7 @@ import re
 
 
 STAT_JELEN = False
-print("Szim Foci Szimulátor 2023 (v1.9)")
+print("Szim Foci Szimulátor 2023 (v1.10.1)")
 
 
 def csapat_input(csapat):
@@ -294,8 +294,8 @@ def esemeny_valasztas(esemeny, csapat):
 
 
 def meccs90(hazcs, vencs, idokoz):
-    elsplusz = random.choices([0, 1, 2, 3, 4, 5], [10, 20, 30, 20, 15, 5])[0]
-    masplusz = random.choices([0, 1, 2, 3, 4, 5, 6], [5, 15, 20, 25, 20, 10, 5])[0]
+    elsplusz = random.choices([0, 1, 2, 3, 4, 5], [9, 21, 32, 17, 14, 7])[0]
+    masplusz = random.choices([0, 1, 2, 3, 4, 5, 6], [6, 16, 21, 27, 17, 9, 4])[0]
     esemenyek90 = esemeny_sorsolas(5, 90)
     if len(esemenyek90) >= 2:
         masplusz += 3
@@ -346,8 +346,8 @@ def meccs120(hazcs, vencs, idokoz):
             return {}
     print("-----")
 
-    hossz_elsplusz = random.choices([0, 1, 2, 3], [30, 40, 20, 10])[0]
-    hossz_masplusz = random.choices([0, 1, 2, 3, 4], [25, 35, 20, 10, 10])[0]
+    hossz_elsplusz = random.choices([0, 1, 2, 3], [26, 38, 22, 14])[0]
+    hossz_masplusz = random.choices([0, 1, 2, 3, 4], [21, 31, 25, 14, 9])[0]
     esemenyek120 = esemeny_sorsolas(95, 120)
     
     for i in range(91, 121):
