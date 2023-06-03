@@ -71,7 +71,7 @@ def felallas(csapat):
         "3-5-2": [8, 4, 1],
         "3-6-1": [0, 11, 2],
         "4-3-3": [6, 7, 0],
-        "4-4-2": [7, 7, 1],
+        "4-4-2": [7, 7, -1],
         "4-5-1": [2, 9, 2],
         "4-6-0": [5, 12, -4],
         "5-3-2": [-2, 4, 11],
@@ -88,6 +88,10 @@ def felallas(csapat):
         "5-2-1-2": [-4, 4, 13],
         "5-2-2-1": [6, -1, 8],
         "X-X-X-X": [3, 4, 6],
+        "3-2-2-2-1": [-1, 4, 10],
+        "4-1-2-1-2": [9, 4, 0],
+        "4-2-1-2-1": [4, 10, -1],
+        "4-2-2-1-1": [10, -2, 5],
         "X-X-X-X-X": [4, 7, 2]}
     
     print("Felállás input például: \n5-3-2 vagy 4-3-2-1 vagy 4-2-2-1-1 szigorúan ebben a formátumban!")
@@ -189,7 +193,7 @@ def loves(hazcs, vencs, plusz):
 
 
 def esemeny_sorsolas(idokezd, idoveg):
-    esemeny_szam = random.choices([0, 1, 2, 3], [35, 35, 20, 10])[0]
+    esemeny_szam = random.choices([0, 1, 2, 3], [33, 36, 21, 10])[0]
     esemenyek = random.choices(["tizenegyes", "sarga", "piros", "vargol", "nincsgol", "serules", "baleset", "szurkolo", "semmi"], [30, 20, 10, 10, 10, 5, 5, 5, 5], k=esemeny_szam)
     esemeny_lista = {}
     for esemeny in esemenyek:
