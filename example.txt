@@ -1,0 +1,158 @@
+Szim Foci Szimulátor 2023 (v1.11)
+-----
+Hazai csapat								#Home team
+-----
+Csapat neve: LAV							#Name
+LAV Támadás pontok (1-99 között): 53					#Attack
+LAV Középpálya pontok (1-99 között): 45					#Midfield
+LAV Védelem pontok (1-99 között): 50					#Defense
+-----
+Ellenőrzés: Név - ATK - MID - DEF
+Hazai: LAV - 53 - 45 - 50						#Overall stats
+-----
+Vendég csapat								#Visitor team
+-----
+Csapat neve: JOK							#Name
+JOK Támadás pontok (1-99 között): 50					#Attack
+JOK Középpálya pontok (1-99 között): 51					#Midfield
+JOK Védelem pontok (1-99 között): 48					#Defense
+-----
+Ellenőrzés: Név - ATK - MID - DEF
+Vendég: JOK - 50 - 51 - 48						#Overall stats
+-----
+Felállás input például:
+5-3-2 vagy 4-3-2-1 vagy 4-2-2-1-1 szigorúan ebben a formátumban!
+LAV felállása: 4-1-4-1							#Home formation
+Választott felállás: 4-1-4-1
+-----
+Felállás input például:
+5-3-2 vagy 4-3-2-1 vagy 4-2-2-1-1 szigorúan ebben a formátumban!
+JOK felállása: 3-5-2							#Visitor formation
+Választott felállás: 3-5-2
+-----
+Esélyek mutatása? igen/nem: nem						#Display chances? y/n
+-----
+Szimuláció indul!							#Starting
+A pályát előkészítik...
+A játékosok bemelegítenek...
+Kezdőrúgás!
+Perc: 1									#Each minute passed by
+Perc: 2
+Perc: 3
+Perc: 4
+Perc: 5
+LAV sikertelen lövés							#Missed shot
+Perc: 6
+JOK sikertelen lövés
+Perc: 7
+Perc: 8
+Perc: 9
+Perc: 10
+Perc: 11
+Perc: 12
+Perc: 13
+Perc: 14
+Perc: 15
+Perc: 16
+Perc: 17
+Perc: 18
+Perc: 19
+JOK sikertelen lövés
+Perc: 20
+Perc: 21
+Perc: 22
+Perc: 23
+Perc: 24
+Perc: 25
+Perc: 26
+JOK sikertelen lövés
+Perc: 27
+JOK sikertelen lövés
+Perc: 28
+Perc: 29
+Perc: 30
+Perc: 31
+Perc: 32
+Perc: 33
+Perc: 34
+JOK GÓÓÓL!								#Goal!
+Perc: 35
+Perc: 36
+Perc: 37
+JOK sikertelen lövés
+Perc: 38
+Perc: 39
+LAV sikertelen lövés
+Perc: 40
+Perc: 41
+Perc: 42
+Perc: 43
+Perc: 44
+Perc: 45
+Perc: 45 + 1								#Extra minutes before half-time
+LAV sikertelen lövés
+Perc: 45 + 2
+LAV sikertelen lövés
+Félidő!
+Perc: 46
+Perc: 47
+Perc: 48
+Perc: 49
+LAV sikertelen lövés
+Perc: 50
+Perc: 51
+Perc: 52
+Perc: 53
+Perc: 54
+Perc: 55
+Akadály került a pályára!						#Random event
+A személyzet elintézi a problémát					#Random events may have an influence on a team or both
+.
+..
+...
+Perc: 56
+Perc: 57
+Perc: 58
+Perc: 59
+Perc: 60
+Perc: 61
+Perc: 62
+Perc: 63
+Perc: 64
+Perc: 65
+LAV sikertelen lövés
+Perc: 66
+Perc: 67
+Perc: 68
+Perc: 69
+Perc: 70
+Perc: 71
+Perc: 72
+Perc: 73
+Perc: 74
+Perc: 75
+Perc: 76
+LAV sikertelen lövés
+Perc: 77
+Perc: 78
+Perc: 79
+Perc: 80
+Perc: 81
+Perc: 82
+Perc: 83
+Perc: 84
+LAV sikertelen lövés
+Perc: 85
+Perc: 86
+Perc: 87
+Perc: 88
+Perc: 89
+Perc: 90
+Perc: 90 + 1								#Extra minutes before full time
+Perc: 90 + 2
+Perc: 90 + 3
+Perc: 90 + 4
+Meccs vége!
+-----
+Végeredmény: LAV - JOK : 0 - 1, lövések száma: 8 - 6			#End results, goals and shots on goals
+Győztes: JOK Gratulálunk!
