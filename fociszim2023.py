@@ -4,7 +4,7 @@ import re
 
 
 STAT_JELEN = False
-print("Szim Foci Szimulátor 2023 (v1.10.1)")
+print("Szim Foci Szimulátor 2023 (v1.11)")
 
 
 def csapat_input(csapat):
@@ -193,8 +193,16 @@ def loves(hazcs, vencs, plusz):
 
 
 def esemeny_sorsolas(idokezd, idoveg):
-    esemeny_szam = random.choices([0, 1, 2, 3], [33, 36, 21, 10])[0]
-    esemenyek = random.choices(["tizenegyes", "sarga", "piros", "vargol", "nincsgol", "serules", "baleset", "szurkolo", "semmi"], [30, 20, 10, 10, 10, 5, 5, 5, 5], k=esemeny_szam)
+    esemeny_szam = random.choices([0, 1, 2, 3, 4], [33, 36, 21, 9, 1])[0]
+    esemenyek = random.choices(["tizenegyes",
+                                "sarga",
+                                "piros",
+                                "vargol",
+                                "nincsgol",
+                                "serules",
+                                "baleset",
+                                "szurkolo",
+                                "semmi"], [23, 28, 13, 8, 10, 5, 6, 4, 3], k=esemeny_szam)
     esemeny_lista = {}
     for esemeny in esemenyek:
         esemeny_lista[random.randrange(idokezd, idoveg)] = esemeny
@@ -279,7 +287,7 @@ def esemeny_valasztas(esemeny, csapat):
             pont_print(3)
         case "szurkolo":
             print("Egy szurkoló beszaladt a pályára!")
-            csapat["percesely"] += 0.0005
+            csapat["percesely"] += 0.001
             time.sleep(2)
             print("A biztonsági őrök elszállítják a drukkert")
             pont_print(3)
@@ -475,6 +483,7 @@ def main():
     if stat == "igen":
         global STAT_JELEN
         STAT_JELEN = True
+        print(f"Kezdő esély: H: {hazai['esely']}, V: {vendeg['esely']}")
         esely_print("kezdés", hazai)
         esely_print("kezdés", vendeg)
     print("-----")
