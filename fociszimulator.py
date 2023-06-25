@@ -1,5 +1,9 @@
 import random
 import time
+
+print("Szim Foci Szimulátor \"Legacy Edition\" (2020-2023)")
+print("Elavult verzió! Legjobb élményért használd a legfrissebb változatot.\n")
+
 hazai=input("Hazai csapat: ")
 vendeg=input("Vendég csapat: ")
 
