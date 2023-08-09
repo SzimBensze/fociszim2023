@@ -4,7 +4,7 @@ import re
 
 
 STAT_ON = False
-print("Szim Foci Szimulátor 2023 (v1.12)")
+print("Szim Foci Szimulátor 2023 (v1.12.1)")
 
 
 def input_team(team):
@@ -102,21 +102,22 @@ def formation(team):
         team["mid"] += formations[input_formation][1]
         team["def"] += formations[input_formation][2]
         print(f"Választott felállás: {input_formation}")    
-    elif re.search("^[0-9]-[0-9]-[0-9]$", input_formation):
-        team["atk"] += formations["X-X-X"][0]
-        team["mid"] += formations["X-X-X"][1]
-        team["def"] += formations["X-X-X"][2]
-        print("Választott felállás: X-X-X")
-    elif re.search("^[0-9]-[0-9]-[0-9]-[0-9]$", input_formation):
-        team["atk"] += formations["X-X-X-X"][0]
-        team["mid"] += formations["X-X-X-X"][1]
-        team["def"] += formations["X-X-X-X"][2]
-        print("Választott felállás: X-X-X-X")
-    elif re.search("^[0-9]-[0-9]-[0-9]-[0-9]-[0-9]$", input_formation):
-        team["atk"] += formations["X-X-X-X-X"][0]
-        team["mid"] += formations["X-X-X-X-X"][1]
-        team["def"] += formations["X-X-X-X-X"][2]
-        print("Választott felállás: X-X-X-X-X")
+    elif re.search("^[0-9]-[0-9]-[0-9](-[0-9])?(-[0-9])?$", input_formation):
+        if len(input_formation) == 5:
+            team["atk"] += formations["X-X-X"][0]
+            team["mid"] += formations["X-X-X"][1]
+            team["def"] += formations["X-X-X"][2]
+            print("Választott felállás: X-X-X")
+        elif len(input_formation) == 7:
+            team["atk"] += formations["X-X-X-X"][0]
+            team["mid"] += formations["X-X-X-X"][1]
+            team["def"] += formations["X-X-X-X"][2]
+            print("Választott felállás: X-X-X-X")
+        elif len(input_formation) == 9:
+            team["atk"] += formations["X-X-X-X-X"][0]
+            team["mid"] += formations["X-X-X-X-X"][1]
+            team["def"] += formations["X-X-X-X-X"][2]
+            print("Választott felállás: X-X-X-X-X")
     else:
         print("Helytelen formátum!")
     pass
@@ -301,9 +302,11 @@ def match90(home_team, vis_team, print_pause):
     first_half_added_mins = random.choices([0, 1, 2, 3, 4, 5], [9, 21, 32, 17, 14, 7])[0]
     sec_half_added_mins = random.choices([0, 1, 2, 3, 4, 5, 6], [6, 16, 21, 27, 17, 9, 4])[0]
     events90 = event_randomizer(5, 90)
-    if len(events90) >= 1:
+    if len(events90) == 1:
         sec_half_added_mins += 2
     if len(events90) >= 2:
+        sec_half_added_mins += 2
+    if len(events90) >= 3:
         sec_half_added_mins += 3
     print("Szimuláció indul!")
     time.sleep(2)
@@ -343,9 +346,9 @@ def match90(home_team, vis_team, print_pause):
 
 def match120(home_team, vis_team, print_pause):
     is_continue = ""
-    while is_continue not in ["igen", "nem"]:
+    while is_continue not in ["igen", "nem", "i", "n"]:
         is_continue = input("Hosszabbítás? igen/nem: ").lower()
-        if is_continue == "nem":
+        if is_continue == "nem" or is_continue == "n":
             print("Döntetlen! Gratulálunk mindkét csapatnak.")
             return {}
     print("-----")
@@ -384,9 +387,9 @@ def match120(home_team, vis_team, print_pause):
 
 def penalties(home_team, vis_team, print_pause):
     is_continue = ""
-    while is_continue not in ["igen", "nem"]:
+    while is_continue not in ["igen", "nem", "i", "n"]:
         is_continue = input("Folytatás? igen/nem: ").lower()
-        if is_continue == "nem":
+        if is_continue == "nem" or is_continue == "n":
             print("Döntetlen! Gratulálunk mindkét csapatnak.")
             return {}
     print("-----")
@@ -494,7 +497,6 @@ def main():
                 time.sleep(1)
                 raise ValueError("Hibás adat?")
     input()
-    print(home, visitor)
 
 try:
     main()
