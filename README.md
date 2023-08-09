@@ -5,7 +5,7 @@ A rework of an old Python project of a text-based football simulator.
 This is a private project, you may examine the code and clone the repository for personal use. Do not copy, edit or share without permission!
 
 ## Short introduction
-This text-base game was a hobby project way back in 2020, the main idea is based off of FIFA 18's match simulation. The original instance, "fociszimulator.py" is really linear and has very primitive code as I was quite novice at that time. This rework, "fociszim2023.py" was made in November 2022 and it has been tweaked and modified since. I consider the current stage final, but I may occasionaly add and rework some blocks of code. It is still not the most condense and convenient code and there's always room for improvent, but just like any other program, nothing is perfect. Both programs are solely in Hungarian and I don't plan on translating them.
+This text-base game was a hobby project way back in 2020, the main idea is based off of FIFA 18's match simulation. The original instance, "fociszimulator.py" is really linear and has very primitive code as I was quite novice at that time. This rework, "fociszim2023.py" was made in November 2022 and it has been tweaked and modified since. I consider the current stage final, but I may occasionaly add and rework some blocks of code. It is still not the most condense and convenient code and there's always room for improvent, but just like any other program, nothing is perfect. Both programs are solely in Hungarian and I don't plan on translating them. My newest implementation is written in Java and can be found on my "fociszim2024" repo. It'll feature mostly the same gameplay, but fully in English.
 
 ## How to use
 Simple steps on how to play a match:
