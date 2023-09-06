@@ -4,7 +4,7 @@ import re
 
 
 STAT_ON = False
-print("Szim Foci Szimulátor 2023 (v1.12.1)")
+print("Szim Foci Szimulátor 2023 (v1.13)")
 
 
 def input_team(team):
@@ -56,8 +56,8 @@ def input_points(name, type):
 def calc_base_chance(home_team, vis_team, base=500, luck_value=6):
     home_luck = luck_value / 7 + random.randrange(1, 4) / 7
     vis_luck = luck_value / 7 + random.randrange(1, 4) / 7
-    home_chance = base + (home_team["atk"] * home_luck - vis_team["atk"] + home_team["mid"] - vis_team["mid"] + home_team["def"] - vis_team["atk"] * vis_luck)
-    vis_chance = base + (vis_team["atk"] * vis_luck - home_team["atk"] + vis_team["mid"] - home_team["mid"] + vis_team["def"] - home_team["atk"] * home_luck)
+    home_chance = base + (home_team["atk"] * home_luck - vis_team["def"] + home_team["mid"] - vis_team["mid"] + home_team["def"] - vis_team["atk"] * vis_luck)
+    vis_chance = base + (vis_team["atk"] * vis_luck - home_team["def"] + vis_team["mid"] - home_team["mid"] + vis_team["def"] - home_team["atk"] * home_luck)
     home_team["shot"], vis_team["shot"], home_team["goal"], vis_team["goal"] = 0, 0, 0, 0
     home_team["base_chance"], vis_team["base_chance"] = home_chance, vis_chance
     pass
@@ -71,7 +71,7 @@ def formation(team):
         "3-6-1": [0, 11, 2],
         "4-3-3": [6, 7, 0],
         "4-4-2": [7, 7, -1],
-        "4-5-1": [2, 9, 2],
+        "4-5-1": [1, 9, 3],
         "4-6-0": [5, 12, -4],
         "5-3-2": [-2, 4, 11],
         "5-4-1": [-5, 6, 12],
@@ -83,7 +83,7 @@ def formation(team):
         "4-2-2-2": [4, 4, 5],
         "4-2-3-1": [7, 1, 5],
         "4-3-1-2": [3, 1, 9],
-        "4-4-1-1": [2, 6, 5],
+        "4-4-1-1": [2, 7, 4],
         "5-2-1-2": [-4, 4, 13],
         "5-2-2-1": [6, -1, 8],
         "X-X-X-X": [3, 4, 6],
