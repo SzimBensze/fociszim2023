@@ -20,7 +20,11 @@ Simple steps on how to play a match:
 6. Enter "igen" to see numeric values for live statistics during the match, "nem" to skip this
 7. Have fun!
 
-Check the example text file to see how a match is set up and simulated.
+Input showcase:
+![image](../main/foci1.png)
+
+Here you can see an example of how a match would look like, this time I used Python IDLE as an environment.
+![image](../main/foci2.png)
 
 ## The mechanism
 The program simulates a match between the given two teams using their FIFA values and their formation. It generates a base chance at the beginning which always rises or falls each minute passed. This chance is a really small number between 0 and 1 and each minute an RNG is made for each team. The teams try and reach the opponent's goal, if conditions are met they will attempt to shoot at the goal in which case another RNG occurs and if the conditions are met once again, they will score a goal. This process is repeated each minute until 90 minutes are passed. There are also some random events which can happen anytime and they are fully independent from this system, but can have an impact on the teams' chances. If the teams are tied you can opt for extra time, where the same mechanism is used, with some minor alterations to the numbers. If the extra time is over and there is still no winner, you can do penalties, which work a little different. Each team will take turns with a similarly calculated chance and will try to score as many goals as possible within 5 tries. If they are tied, the process will repeat until one team fails, so eventually there will be a winner.
