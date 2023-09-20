@@ -4,7 +4,7 @@ import re
 
 
 STAT_ON = False
-print("Szim Foci Szimulátor 2023 (v1.13)")
+print("Szim Foci Szimulátor 2023 (v1.14)")
 
 
 def input_team(team):
@@ -126,8 +126,8 @@ def formation(team):
 def calc_minute_chance(home_team, vis_team, luck_value=6):
     home_luck = luck_value / 10 + random.randrange(1, 3) / 10
     vis_luck = luck_value / 10 + random.randrange(1, 3) / 10
-    home_chance = home_team["base_chance"] + (home_team["atk"]*home_luck - vis_team["atk"] + home_team["mid"] - vis_team["mid"] + home_team["def"] - vis_team["atk"]*vis_luck)/3
-    vis_chance = vis_team["base_chance"] + (vis_team["atk"]*vis_luck - home_team["atk"] + vis_team["mid"] - home_team["mid"] + vis_team["def"] - home_team["atk"]*home_luck)/3
+    home_chance = home_team["base_chance"] + (home_team["atk"]*home_luck - vis_team["def"] + home_team["mid"] - vis_team["mid"] + home_team["def"] - vis_team["atk"]*vis_luck)/3
+    vis_chance = vis_team["base_chance"] + (vis_team["atk"]*vis_luck - home_team["def"] + vis_team["mid"] - home_team["mid"] + vis_team["def"] - home_team["atk"]*home_luck)/3
     randomizer = 0.1
     home_team["minute_chance"] = ((home_chance + home_luck) / 1000) * randomizer
     vis_team["minute_chance"] = ((vis_chance + vis_luck) / 1000) * randomizer
@@ -190,7 +190,7 @@ def shoot_goal(home_team, vis_team, plus, plus_value=1.019):
 
 
 def event_randomizer(idokezd, idoveg):
-    event_count = random.choices([0, 1, 2, 3, 4], [33, 36, 20, 9, 2])[0]
+    event_count = random.choices([0, 1, 2, 3, 4], [33, 36, 18, 9, 4])[0]
     random_events = random.choices(["tizenegyes",
                                 "sarga",
                                 "piros",
